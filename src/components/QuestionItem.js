@@ -3,12 +3,12 @@ import React from "react";
 function QuestionItem({ question, deleteQuestion, updateQuestion  }) {
   const { id, prompt, answers, correctIndex } = question;
 
-   // Handle updating the correct answer
+   
    function handleUpdateQuestion(event) {
-    const newCorrectIndex = parseInt(event.target.value, 10); // Get selected value as integer
+    const newCorrectIndex = parseInt(event.target.value, 10); 
     const updatedQuestion = { ...question, correctIndex: newCorrectIndex };
 
-    // PATCH the updated question to the server
+   
     fetch(`http://localhost:4000/questions/${id}`, {
       method: "PATCH",
       headers: {
@@ -19,16 +19,16 @@ function QuestionItem({ question, deleteQuestion, updateQuestion  }) {
       }),
     })
       .then((r) => r.json())
-      .then(() => updateQuestion(updatedQuestion)); // Update the state with the updated question
+      .then(() => updateQuestion(updatedQuestion)); 
   }
 
-  // Handle deleting the question
+ 
   function handleDelete() {
     fetch(`http://localhost:4000/questions/${id}`, {
       method: "DELETE",
     })
       .then((r) => r.json())
-      .then(() => deleteQuestion(id)); // Remove from state after successful delete
+      .then(() => deleteQuestion(id)); 
   }
 
   const options = answers.map((answer, index) => (
